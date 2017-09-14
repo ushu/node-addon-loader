@@ -1,7 +1,5 @@
 var loaderUtils = require("loader-utils");
 var path = require("path");
-var fs = require("fs");
-var mkdirp = require("mkdirp");
 
 module.exports = function(content) {
   this.cacheable && this.cacheable();
@@ -35,15 +33,7 @@ module.exports = function(content) {
     regExp: config.regExp,
   });
 
-  // for some reason emitFile corrupts binary files...
-  // I keep the call to emit the bundle
-  // TODO: fix emitFile and uncomment this code
-  //this.emitFile(url, content, false);
-  // TODO: once emitFile works as intended, remove code below:
-  mkdirp.sync(this.options.output.path)
-  fs.createReadStream(this.resourcePath)
-    .pipe(fs.createWriteStream(path.join(this.options.output.path, url)));
-
+  this.emitFile(url, content, false);
   if (config.basePath) {
     var baseDir = path.relative(config.basePath, this.options.output.path);
     url = path.join(baseDir, url);
