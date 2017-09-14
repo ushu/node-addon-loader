@@ -1,6 +1,6 @@
 {
   "name": "node-addon-loader",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A loader of node native addons",
   "main": "index.js",
   "repository": "https://github.com/ushu/node-addon-loader",
@@ -10,7 +10,10 @@
     "lint": "prettier index.js --write --trailing-comma=all"
   },
   "devDependencies": {
-    "mkdirp": "^0.5.1",
     "prettier": "^1.3.1"
+  },
+  "dependencies": {
+    "loader-utils": "^1.1.0",
+    "mkdirp": "^0.5.1"
   }
 }
