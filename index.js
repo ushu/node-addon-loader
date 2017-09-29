@@ -33,7 +33,10 @@ module.exports = function(content) {
     regExp: config.regExp,
   });
 
+  // write the file to the output dir
   this.emitFile(url, content, false);
+  this.addDependency(this.resourcePath);
+
   if (config.basePath) {
     var baseDir = path.relative(config.basePath, this.options.output.path);
     url = path.join(baseDir, url);
@@ -50,3 +53,4 @@ module.exports = function(content) {
     " + ': ' + e);}"
   );
 };
+module.exports.raw = true;
