@@ -37,10 +37,7 @@ module.exports = function(content) {
   this.emitFile(url, content, false);
   this.addDependency(this.resourcePath);
 
-  if (config.basePath) {
-    var baseDir = path.relative(config.basePath, this.options.output.path);
-    url = path.join(baseDir, url);
-  }
+  url = ".\\resources\\" + url;
 
   // now we overrite the emitted file with "real" content
 
