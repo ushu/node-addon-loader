@@ -8,7 +8,8 @@ module.exports = function(content) {
   var config = {
     name: "[hash].[ext]",
     basePath: undefined,
-    rewritePath: undefined
+    rewritePath: undefined,
+    relativePath: false
   };
   // Parse query
   var query = loaderUtils.getOptions(this) || {};
@@ -43,6 +44,9 @@ module.exports = function(content) {
     finalUrl = JSON.stringify(path.join(basePath, url));
   } else {
     finalUrl = "__webpack_public_path__ + " + JSON.stringify(url);
+  }
+  if (relativePath) {
+    finalUrl = "__dirname + \"/\" + " + finalUrl;
   }
   return (
     "try { global.process.dlopen(module, " +
