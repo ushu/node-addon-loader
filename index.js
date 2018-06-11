@@ -45,7 +45,7 @@ module.exports = function(content) {
   } else {
     finalUrl = "__webpack_public_path__ + " + JSON.stringify(url);
   }
-  if (relativePath) {
+  if (config.relativePath) {
     finalUrl = "__dirname + \"/\" + " + finalUrl;
   }
   return (
